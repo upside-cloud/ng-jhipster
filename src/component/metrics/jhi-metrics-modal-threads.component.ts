@@ -18,6 +18,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ThreadData } from './thread-data.interface';
 
 @Component({
     selector: 'jhi-thread-modal',
@@ -101,7 +102,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class JhiThreadModalComponent implements OnInit {
     threadDumpFilter: any;
-    threadDump: any;
+    threadDump: ThreadData[] = [];
     threadDumpAll = 0;
     threadDumpBlocked = 0;
     threadDumpRunnable = 0;
@@ -110,7 +111,7 @@ export class JhiThreadModalComponent implements OnInit {
 
     constructor(public activeModal: NgbActiveModal) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.threadDump.forEach(value => {
             if (value.threadState === 'RUNNABLE') {
                 this.threadDumpRunnable += 1;
@@ -126,7 +127,7 @@ export class JhiThreadModalComponent implements OnInit {
         this.threadDumpAll = this.threadDumpRunnable + this.threadDumpWaiting + this.threadDumpTimedWaiting + this.threadDumpBlocked;
     }
 
-    getBadgeClass(threadState) {
+    getBadgeClass(threadState: string): 'badge-success' | 'badge-info' | 'badge-warning' | 'badge-danger' | 'badge-primary' {
         if (threadState === 'RUNNABLE') {
             return 'badge-success';
         } else if (threadState === 'WAITING') {
@@ -135,6 +136,8 @@ export class JhiThreadModalComponent implements OnInit {
             return 'badge-warning';
         } else if (threadState === 'BLOCKED') {
             return 'badge-danger';
+        } else {
+            return 'badge-primary';
         }
     }
 }

@@ -21,6 +21,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { JhiThreadModalComponent } from './jhi-metrics-modal-threads.component';
+import { ThreadData } from './thread-data.interface';
 
 @Component({
     selector: 'jhi-jvm-threads',
@@ -84,11 +85,11 @@ export class JhiJvmThreadsComponent implements OnInit {
     /**
      * object containing thread related metrics
      */
-    @Input() threadData: any;
+    @Input() threadData: ThreadData[] = [];
 
     constructor(private modalService: NgbModal) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.threadStats = {
             threadDumpRunnable: 0,
             threadDumpWaiting: 0,
@@ -116,8 +117,8 @@ export class JhiJvmThreadsComponent implements OnInit {
             this.threadStats.threadDumpBlocked;
     }
 
-    open() {
+    open(): void {
         const modalRef = this.modalService.open(JhiThreadModalComponent);
-        modalRef.componentInstance.threadDump = this.threadData;
+        (modalRef.componentInstance as JhiThreadModalComponent).threadDump = this.threadData;
     }
 }

@@ -36,7 +36,9 @@ describe('JhiMaxbytesValidatorDirective Tests', () => {
             c.setValue(sampleImage);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).maxbytes).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).maxbytes.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).maxbytes.valid).toBe(false);
         });
 

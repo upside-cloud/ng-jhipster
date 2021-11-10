@@ -50,8 +50,10 @@ export class JhiParseLinks {
             const url: string = section[0].replace(/<(.*)>/, '$1').trim();
             const queryString: any = {};
 
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
             url.replace(new RegExp('([^?=&]+)(=([^&]*))?', 'g'), ($0, $1, $2, $3) => (queryString[$1] = $3));
 
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment
             let page: any = queryString.page;
 
             if (typeof page === 'string') {
@@ -59,6 +61,7 @@ export class JhiParseLinks {
             }
 
             const name: string = section[1].replace(/rel="(.*)"/, '$1').trim();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
             links[name] = page;
         });
         return links;

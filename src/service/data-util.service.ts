@@ -87,8 +87,9 @@ export class JhiDataUtils {
      */
     toBase64(file: File, cb: Function): void {
         const fileReader: FileReader = new FileReader();
-        fileReader.onload = function(e: any) {
-            const base64Data: string = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+        fileReader.onload = function(e: ProgressEvent<FileReader>) {
+            const result: string = e.target.result as string;
+            const base64Data: string = result.substr(result.indexOf('base64,') + 'base64,'.length);
             cb(base64Data);
         };
         fileReader.readAsDataURL(file);
@@ -97,7 +98,7 @@ export class JhiDataUtils {
     /**
      * Method to clear the input
      */
-    clearInputImage(entity: any, elementRef: ElementRef, field: string, fieldContentType: string, idInput: string): void {
+    clearInputImage<T extends HTMLElement>(entity: object, elementRef: ElementRef<T>, field: string, fieldContentType: string, idInput: string): void {
         if (entity && field && fieldContentType) {
             if (Object.prototype.hasOwnProperty.call(entity, field)) {
                 entity[field] = null;
@@ -106,7 +107,8 @@ export class JhiDataUtils {
                 entity[fieldContentType] = null;
             }
             if (elementRef && idInput && elementRef.nativeElement.querySelector('#' + idInput)) {
-                elementRef.nativeElement.querySelector('#' + idInput).value = null;
+                const inputEl: HTMLInputElement = elementRef.nativeElement.querySelector('#' + idInput);
+                inputEl.value = null;
             }
         }
     }
@@ -121,7 +123,7 @@ export class JhiDataUtils {
      * @param isImage boolean representing if the file represented by the event is an image
      * @returns a promise that resolves to the modified entity if operation is successful, otherwise rejects with an error message
      */
-    setFileData(event, entity, field: string, isImage: boolean): Promise<any> {
+    setFileData(event: (Event & { target: HTMLInputElement }), entity: object, field: string, isImage: boolean): Promise<any> {
         return new Promise((resolve, reject) => {
             if (event && event.target && event.target.files && event.target.files[0]) {
                 const file: File = event.target.files[0];
@@ -129,13 +131,14 @@ export class JhiDataUtils {
                     reject(`File was expected to be an image but was found to be ${file.type}`);
                 } else {
                     this.toBase64(file, base64Data => {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         entity[field] = base64Data;
                         entity[`${field}ContentType`] = file.type;
                         resolve(entity);
                     });
                 }
             } else {
-                reject(`Base64 data was not set as file could not be extracted from passed parameter: ${event}`);
+                reject(`Base64 data was not set as file could not be extracted from passed parameter: ${String(event)}`);
             }
         });
     }

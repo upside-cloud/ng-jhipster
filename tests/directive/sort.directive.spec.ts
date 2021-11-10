@@ -38,7 +38,7 @@ describe('Directive: JhiSortDirective', () => {
     it('should update predicate, order and invoke callback function', () => {
 
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         const sortDirective = tableRow.injector.get(JhiSortDirective);
 
         // WHEN
@@ -55,7 +55,7 @@ describe('Directive: JhiSortDirective', () => {
     it('should change sort order to descending when same field is sorted again', () => {
 
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         const sortDirective = tableRow.injector.get(JhiSortDirective);
 
         // WHEN
@@ -74,7 +74,7 @@ describe('Directive: JhiSortDirective', () => {
     it('should change sort order to ascending when different field is sorted', () => {
 
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         const sortDirective = tableRow.injector.get(JhiSortDirective);
 
         // WHEN

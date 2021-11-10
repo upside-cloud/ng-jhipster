@@ -18,7 +18,7 @@
  */
 import { Injectable } from '@angular/core';
 import { Observable, Observer, Subscription } from 'rxjs';
-import { filter, share, map } from 'rxjs/operators';
+import { filter, map, share } from 'rxjs/operators';
 import { JhiEventWithContent } from './event-with-content.model';
 
 /**
@@ -32,7 +32,7 @@ export class JhiEventManager {
     observer: Observer<JhiEventWithContent<any> | string>;
 
     constructor() {
-        this.observable = Observable.create((observer: Observer<JhiEventWithContent<any> | string>) => {
+        this.observable = new Observable((observer: Observer<JhiEventWithContent<any> | string>) => {
             this.observer = observer;
         }).pipe(share());
     }
@@ -49,6 +49,7 @@ export class JhiEventManager {
     /**
      * Method to subscribe to an event with callback
      */
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     subscribe(eventName: string, callback: any): Subscription {
         const subscriber: Subscription = this.observable
             .pipe(

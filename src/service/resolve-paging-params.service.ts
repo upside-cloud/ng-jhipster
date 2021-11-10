@@ -26,10 +26,10 @@ import { JhiPaginationUtil } from './pagination-util.service';
 export class JhiResolvePagingParams implements Resolve<any> {
     constructor(private paginationUtil: JhiPaginationUtil) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const defaultSort = route.data['defaultSort'] ? route.data['defaultSort'] : 'id,asc';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : defaultSort;
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): { page: number, predicate: string, ascending: boolean } {
+        const page = route.queryParams['page'] as string ?? '1';
+        const defaultSort = route.data['defaultSort'] as string ?? 'id,asc';
+        const sort = route.queryParams['sort'] as string ?? defaultSort;
         return {
             page: this.paginationUtil.parsePage(page),
             predicate: this.paginationUtil.parsePredicate(sort),

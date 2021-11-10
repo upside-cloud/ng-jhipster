@@ -60,7 +60,7 @@ export class JhiAlertService {
         this.timeout = config.alertTimeout;
     }
 
-    clear() {
+    clear(): void {
         this.alerts.splice(0, this.alerts.length);
     }
 
@@ -68,7 +68,7 @@ export class JhiAlertService {
         return this.alerts;
     }
 
-    success(msg: string, params?: any, position?: string): JhiAlert {
+    success(msg: string, params?: object, position?: string): JhiAlert {
         return this.addAlert(
             {
                 type: 'success',
@@ -82,7 +82,7 @@ export class JhiAlertService {
         );
     }
 
-    error(msg: string, params?: any, position?: string): JhiAlert {
+    error(msg: string, params?: object, position?: string): JhiAlert {
         return this.addAlert(
             {
                 type: 'danger',
@@ -96,7 +96,7 @@ export class JhiAlertService {
         );
     }
 
-    warning(msg: string, params?: any, position?: string): JhiAlert {
+    warning(msg: string, params?: object, position?: string): JhiAlert {
         return this.addAlert(
             {
                 type: 'warning',
@@ -110,7 +110,7 @@ export class JhiAlertService {
         );
     }
 
-    info(msg: string, params?: any, position?: string): JhiAlert {
+    info(msg: string, params?: object, position?: string): JhiAlert {
         return this.addAlert(
             {
                 type: 'info',
@@ -127,7 +127,7 @@ export class JhiAlertService {
     addAlert(alertOptions: JhiAlert, extAlerts: JhiAlert[]): JhiAlert {
         alertOptions.id = this.alertId++;
         if (this.i18nEnabled && alertOptions.msg) {
-            alertOptions.msg = this.translateService.instant(alertOptions.msg, alertOptions.params);
+            alertOptions.msg = this.translateService.instant(alertOptions.msg, alertOptions.params) as string || '';
         }
         const alert = this.factory(alertOptions);
         if (alertOptions.timeout && alertOptions.timeout > 0) {
