@@ -57,7 +57,7 @@ describe('JhiTranslate Tests', () => {
     });
 
     it('should not change HTML if i18n is disabled', () => {
-        const spy = spyOn(translateService, 'get').and.callThrough();
+        const spy = jest.spyOn(translateService, 'get');
 
         fixture.detectChanges();
 
@@ -65,7 +65,7 @@ describe('JhiTranslate Tests', () => {
     });
 
     it('should change HTML if i18n is enabled', () => {
-        const spy = spyOn(translateService, 'get').and.callThrough();
+        const spy = jest.spyOn(translateService, 'get');
 
         configService.getConfig = () => ({
             i18nEnabled: true

@@ -47,7 +47,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should initialize predicate, order, icon when initial component predicate is _score', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = '_score';
         const sortDirective = tableRow.injector.get(JhiSortDirective);
         const sortByDirective = tableHead.injector.get(JhiSortByDirective);
@@ -66,7 +66,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should initialize predicate, order, icon when initial component predicate differs from column predicate', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = 'id';
         const sortDirective = tableRow.injector.get(JhiSortDirective);
         const sortByDirective = tableHead.injector.get(JhiSortByDirective);
@@ -85,7 +85,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should initialize predicate, order, icon when initial component predicate is same as column predicate', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = 'name';
         component.ascending = true;
         const sortDirective = tableRow.injector.get(JhiSortDirective);
@@ -107,7 +107,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should initialize predicate, order, icon when initial component predicate is _score and user clicks on column header', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = '_score';
         component.ascending = true;
         const sortDirective = tableRow.injector.get(JhiSortDirective);
@@ -130,7 +130,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should update component predicate, order, icon when user clicks on column header', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = 'name';
         component.ascending = true;
         const sortDirective = tableRow.injector.get(JhiSortDirective);
@@ -153,7 +153,7 @@ describe('Directive: JhiSortByDirective', () => {
 
     it('should update component predicate, order, icon when user double clicks on column header', () => {
         // GIVEN
-        spyOn(component, 'transition').and.callThrough();
+        jest.spyOn(component, 'transition');
         component.predicate = 'name';
         component.ascending = true;
         const sortDirective = tableRow.injector.get(JhiSortDirective);
