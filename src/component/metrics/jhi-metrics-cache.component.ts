@@ -78,7 +78,7 @@ export class JhiMetricsCacheComponent {
      */
     @Input() updating: boolean;
 
-    filterNaN(input) {
+    filterNaN(input: number): number {
         if (isNaN(input)) {
             return 0;
         }

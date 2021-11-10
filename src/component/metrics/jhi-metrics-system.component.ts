@@ -85,7 +85,7 @@ export class JhiMetricsSystemComponent {
      */
     @Input() updating: boolean;
 
-    convertMillisecondsToDuration(ms) {
+    convertMillisecondsToDuration(ms: number): string {
         const times = {
             year: 31557600000,
             month: 2629746000,

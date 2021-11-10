@@ -16,12 +16,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
  */
-export function numberOfBytes(base64String: string) {
-    function endsWith(suffix: string, str: string) {
+export function numberOfBytes(base64String: string): number {
+    function endsWith(suffix: string, str: string): boolean {
         return str.includes(suffix, str.length - suffix.length);
     }
 
-    function paddingSize(value: string) {
+    function paddingSize(value: string): number {
         if (endsWith('==', value)) {
             return 2;
         }

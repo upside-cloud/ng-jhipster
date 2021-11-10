@@ -69,7 +69,7 @@ describe('Data Utils Service Test', () => {
                 target: {
                     files: [{ type: 'text/plain' }]
                 }
-            };
+            } as any as Event & { target: HTMLInputElement };
 
             service
                 .setFileData(eventSake, null, null, true)
@@ -86,9 +86,9 @@ describe('Data Utils Service Test', () => {
                 target: {
                     files: [new File(['file content'], 'test-file.txt')]
                 }
-            };
+            } as any as Event & { target: HTMLInputElement };
 
-            service
+            void service
                 .setFileData(eventSake, {}, 'document', false)
                 .then(modifiedEntity => expect(modifiedEntity).toEqual({ document: 'ZmlsZSBjb250ZW50', documentContentType: '' }));
         })

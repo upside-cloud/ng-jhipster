@@ -34,7 +34,9 @@ describe('JhiMaxValidatorDirective Tests', () => {
             c.setValue(11);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).max).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).max.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).max.valid).toBe(false);
         });
 
@@ -61,7 +63,9 @@ describe('JhiMaxValidatorDirective Tests', () => {
             c.setValue(0);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).max).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).max.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).max.valid).toBe(false);
         });
     });

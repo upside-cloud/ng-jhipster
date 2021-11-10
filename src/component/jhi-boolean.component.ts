@@ -116,7 +116,7 @@ export class JhiBooleanComponent implements OnInit {
         this.config = configService.getConfig();
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         if (this.textTrue === undefined) {
             if (this.classTrue === undefined) {
                 this.classTrue = this.config.classTrue;

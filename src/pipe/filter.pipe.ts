@@ -18,15 +18,17 @@
  */
 import { Pipe, PipeTransform } from '@angular/core';
 
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 @Pipe({ name: 'filter', pure: false })
 export class JhiFilterPipe implements PipeTransform {
-    transform(input: any[], filter: any, field?: string): any {
+    transform<T>(input: T[], filter?: any | (() => any), field?: string): T[] {
         if (typeof filter === 'undefined' || filter === '') {
             return input;
         }
 
         // if filter is of type 'function' compute current value of filter, otherwise return filter
-        const currentFilter = typeof filter === 'function' ? filter() : filter;
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
+        const currentFilter: any = typeof filter === 'function' ? filter() : filter;
 
         if (typeof currentFilter === 'number') {
             return input.filter(this.filterByNumber(currentFilter, field));
@@ -46,32 +48,33 @@ export class JhiFilterPipe implements PipeTransform {
         return input.filter(this.filterDefault(currentFilter, field));
     }
 
-    private filterByNumber(filter, field?) {
+    private filterByNumber<T>(filter: number, field?: string): (value: T) => boolean {
         return value =>
             (value && !filter) || (typeof value === 'object' && field)
                 ? value[field] && typeof value[field] === 'number' && value[field] === filter
                 : typeof value === 'number' && value === filter;
     }
 
-    private filterByBoolean(filter, field?) {
+    private filterByBoolean<T>(filter: boolean, field?: string): (value: T) => boolean  {
         return value =>
             typeof value === 'object' && field
                 ? value[field] && typeof value[field] === 'boolean' && value[field] === filter
                 : typeof value === 'boolean' && value === filter;
     }
 
-    private filterByString(filter, field?) {
+    private filterByString<T>(filter: string, field?: string): (value: T) => boolean  {
         return value =>
             (value && !filter) || (typeof value === 'object' && field)
-                ? value[field] && typeof value[field] === 'string' && value[field].toLowerCase().includes(filter.toLowerCase())
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                ? value[field] && typeof value[field] === 'string' && (value[field].toLowerCase().includes(filter.toLowerCase()) as boolean)
                 : typeof value === 'string' && value.toLowerCase().includes(filter.toLowerCase());
     }
 
-    private filterDefault(filter, field?) {
+    private filterDefault<T>(filter: any, field?: string): (value: T) => boolean  {
         return value => ((value && !filter) || (typeof value === 'object' && field) ? value[field] && filter === value : filter === value);
     }
 
-    private filterByObject(filter) {
+    private filterByObject<T>(filter: object): (value: T) => boolean  {
         return value => {
             const keys = Object.keys(filter);
             let isMatching = false;

@@ -25,7 +25,7 @@ import { JhiConfigService } from '../../src/config.service';
 function getElementHtml(
     element: ComponentFixture<JhiItemCountComponent>
 ): string {
-    const res = element.nativeElement.querySelector('.jhi-item-count');
+    const res = (element.nativeElement as HTMLElement).querySelector('.jhi-item-count');
     return res && res.innerHTML ? res.innerHTML.trim() : '';
 }
 
@@ -34,7 +34,7 @@ describe('JhiItemCountComponent test', () => {
     let fixture: ComponentFixture<JhiItemCountComponent>;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
+        void TestBed.configureTestingModule({
             declarations: [JhiItemCountComponent, JhiTranslateDirective],
             imports: [TranslateModule.forRoot()],
             providers: [

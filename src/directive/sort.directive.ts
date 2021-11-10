@@ -27,13 +27,13 @@ export class JhiSortDirective {
     @Input() ascending: boolean;
     @Input() callback: Function;
 
-    @Output() predicateChange: EventEmitter<string> = new EventEmitter();
-    @Output() ascendingChange: EventEmitter<boolean> = new EventEmitter();
+    @Output() predicateChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() ascendingChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     activeIconComponent: FaIconComponent;
     constructor() {}
 
-    sort(field: string) {
+    sort(field: string): void {
         this.ascending = field !== this.predicate ? true : !this.ascending;
         this.predicate = field;
         this.predicateChange.emit(field);

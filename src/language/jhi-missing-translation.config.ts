@@ -22,7 +22,7 @@ import { JhiConfigService } from '../config.service';
 export class JhiMissingTranslationHandler implements MissingTranslationHandler {
     constructor(private configService: JhiConfigService) {}
 
-    handle(params: MissingTranslationHandlerParams) {
+    handle(params: MissingTranslationHandlerParams): string {
         const key = params.key;
         return `${this.configService.getConfig().noi18nMessage}[${key}]`;
     }

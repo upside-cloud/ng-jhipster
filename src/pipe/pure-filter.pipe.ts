@@ -21,7 +21,7 @@ import { JhiFilterPipe } from './filter.pipe';
 
 @Pipe({ name: 'pureFilter' })
 export class JhiPureFilterPipe extends JhiFilterPipe implements PipeTransform {
-    transform(input: any[], filter: any, field?: string): any {
+    transform<T>(input: T[], filter: any | (() => any), field?: string): T[] {
         return super.transform(input, filter, field);
     }
 }

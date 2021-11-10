@@ -25,7 +25,7 @@ import { Injectable } from '@angular/core';
 export class JhiBase64Service {
     private keyStr: string = 'ABCDEFGHIJKLMNOP' + 'QRSTUVWXYZabcdef' + 'ghijklmnopqrstuv' + 'wxyz0123456789+/' + '=';
 
-    encode(input) {
+    encode(input: string): string {
         let output = '';
         let enc1: any = '';
         let enc2: any = '';
@@ -60,7 +60,7 @@ export class JhiBase64Service {
         return output;
     }
 
-    decode(input) {
+    decode(input: string): string {
         let output = '';
         let enc1: any = '';
         let enc2: any = '';

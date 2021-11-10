@@ -50,8 +50,8 @@ describe('JhiTranslate Tests', () => {
     }));
 
     beforeEach(() => {
-        configService = TestBed.get(JhiConfigService);
-        translateService = TestBed.get(TranslateService);
+        configService = TestBed.inject(JhiConfigService);
+        translateService = TestBed.inject(TranslateService);
 
         fixture = TestBed.createComponent(TestJhiTranslateDirectiveComponent);
     });

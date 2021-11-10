@@ -17,7 +17,7 @@
  limitations under the License.
  */
 import { Directive, forwardRef, Input } from '@angular/core';
-import { FormControl, NG_VALIDATORS } from '@angular/forms';
+import { FormControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
 
 import { numberOfBytes } from './number-of-bytes';
 
@@ -31,7 +31,7 @@ export class JhiMinbytesValidatorDirective {
 
     constructor() {}
 
-    validate(c: FormControl) {
+    validate(c: FormControl): ValidationErrors | null {
         return c.value && numberOfBytes(c.value) < this.jhiMinbytes
             ? {
                   minbytes: {
