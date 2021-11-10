@@ -90,6 +90,7 @@
     "clean-release": "npm run cleanup && npm run build && npm run release",
     "release:patch": "npm test && npm version patch -a -m \"Update to %s\" && npm run clean-release",
     "release:minor": "npm test && npm version minor -a -m \"Update to %s\" && npm run clean-release",
-    "release:major": "npm test && npm version major -a -m \"Update to %s\" && npm run clean-release"
+    "release:major": "npm test && npm version major -a -m \"Update to %s\" && npm run clean-release",
+    "npm:install": "npm install"
   }
 }
