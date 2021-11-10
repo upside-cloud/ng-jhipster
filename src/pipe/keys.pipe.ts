@@ -20,10 +20,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'keys' })
 export class JhiKeysPipe implements PipeTransform {
-    transform(value: any): any {
-        const keys = [];
+    transform(value: object): ({ key: string, value: any })[] {
+        const keys: ({ key: string, value: any })[] = [];
         const valueKeys = Object.keys(value);
         for (const key of valueKeys) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             keys.push({ key, value: value[key] });
         }
         return keys;

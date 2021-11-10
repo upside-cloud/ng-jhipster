@@ -21,15 +21,15 @@ import { JhiBooleanComponent } from '../../src/component/jhi-boolean.component';
 import { JhiConfigService } from '../../src/config.service';
 
 function getElementHtml(element: ComponentFixture<JhiBooleanComponent>): string {
-    const res = element.nativeElement.querySelector('span');
+    const res = (element.nativeElement as HTMLElement).querySelector('span');
     return (res && res.innerHTML) ? res.innerHTML.trim() : '';
 }
 
 function getElementAttribute(element: ComponentFixture<JhiBooleanComponent>, value: string): string {
-    let res = element.nativeElement.querySelector('span');
+    const res = (element.nativeElement as HTMLElement).querySelector('span');
     if (res && res.attributes) {
-        res = res.attributes.getNamedItem(value);
-        return (res && res.value) ? res.value.trim() : '';
+        const attr = res.attributes.getNamedItem(value);
+        return (attr && attr.value) ? attr.value.trim() : '';
     }
     return '';
 }
@@ -40,7 +40,7 @@ describe('JhiBooleanComponent test', () => {
     let fixture: ComponentFixture<JhiBooleanComponent>;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
+        void TestBed.configureTestingModule({
             declarations: [JhiBooleanComponent],
             providers: [
                 {

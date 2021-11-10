@@ -28,7 +28,7 @@ class SpyService {
   called = false;
 }
 
-function callback(spyService) {
+function callback(spyService: SpyService) {
     spyService.called = true;
 }
 

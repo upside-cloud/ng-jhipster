@@ -29,11 +29,11 @@ import { JHI_COMPONENTS, JHI_DIRECTIVES, JHI_PIPES } from './jhi-components';
 import { JhiMissingTranslationHandler } from './language/jhi-missing-translation.config';
 import { JhiTranslateDirective } from './language/jhi-translate.directive';
 
-export function translatePartialLoader(http: HttpClient) {
+export function translatePartialLoader(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, 'i18n/', `.json?buildTimestamp=${process.env.BUILD_TIMESTAMP}`);
 }
 
-export function missingTranslationHandler(configService: JhiConfigService) {
+export function missingTranslationHandler(configService: JhiConfigService): JhiMissingTranslationHandler {
     return new JhiMissingTranslationHandler(configService);
 }
 

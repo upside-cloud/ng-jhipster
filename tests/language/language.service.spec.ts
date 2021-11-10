@@ -38,13 +38,13 @@ describe('LanguageService Test', () => {
 
     it('should change Language', async(inject([JhiLanguageService], (service: JhiLanguageService) => {
         service.changeLanguage('fr');
-        service.getCurrent().then(language => expect(language).toEqual('fr'));
+        void service.getCurrent().then(language => expect(language).toEqual('fr'));
     })));
 
     it('should retain changed language even after force refresh', async(inject([JhiLanguageService], (service: JhiLanguageService) => {
         service.changeLanguage('fr');
         service.init();
-        service.getCurrent().then(language => expect(language).toEqual('fr'));
+        void service.getCurrent().then(language => expect(language).toEqual('fr'));
     })));
 
 });

@@ -36,7 +36,7 @@ export class JhiDateUtils {
     /**
      * Method to convert the date time from server into JS date object
      */
-    convertDateTimeFromServer(date: any) {
+    convertDateTimeFromServer(date: string): Date | number {
         if (date) {
             return new Date(date);
         } else {
@@ -47,9 +47,9 @@ export class JhiDateUtils {
     /**
      * Method to convert the date from server into JS date object
      */
-    convertLocalDateFromServer(date: any) {
+    convertLocalDateFromServer(date: string): Date | number {
         if (date) {
-            const dateString = date.split('-');
+            const dateString = date.split('-').map(v => Number(v));
             return new Date(dateString[0], dateString[1] - 1, dateString[2]);
         }
         return null;
@@ -58,7 +58,7 @@ export class JhiDateUtils {
     /**
      * Method to convert the JS date object into specified date pattern
      */
-    convertLocalDateToServer(date: any, pattern = this.pattern) {
+    convertLocalDateToServer(date: { year: number, month: number, day: number }, pattern = this.pattern): string | null {
         if (date) {
             const newDate = new Date(date.year, date.month - 1, date.day);
             return this.datePipe.transform(newDate, pattern);
@@ -70,16 +70,16 @@ export class JhiDateUtils {
     /**
      * Method to get the default date pattern
      */
-    dateformat() {
+    dateformat(): string {
         return this.pattern;
     }
 
     // TODO Change this method when moving from datetime-local input to NgbDatePicker
-    toDate(date: any): Date {
+    toDate(date: string | undefined | null): Date {
         if (date === undefined || date === null) {
             return null;
         }
-        const dateParts = date.split(/\D+/);
+        const dateParts = date.split(/\D+/).map(v => Number(v));
         if (dateParts.length === 7) {
             return new Date(dateParts[0], dateParts[1] - 1, dateParts[2], dateParts[3], dateParts[4], dateParts[5], dateParts[6]);
         }

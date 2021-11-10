@@ -36,7 +36,9 @@ describe('JhiMinbytesValidatorDirective Tests', () => {
             c.setValue(sampleImage);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).minbytes).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).minbytes.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).minbytes.valid).toBe(false);
         });
 

@@ -46,7 +46,9 @@ describe('JhiMinValidatorDirective Tests', () => {
             c.setValue(9);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).min).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).min.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).min.valid).toBe(false);
         });
 
@@ -61,7 +63,9 @@ describe('JhiMinValidatorDirective Tests', () => {
             c.setValue(0);
             expect(dir.validate(c)).toBeDefined();
             expect(dir.validate(c).min).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).min.valid).toBeDefined();
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             expect(dir.validate(c).min.valid).toBe(false);
         });
     });

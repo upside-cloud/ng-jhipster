@@ -37,7 +37,7 @@ export class JhiTranslateDirective implements OnChanges, OnInit, OnDestroy {
 
     constructor(private configService: JhiConfigService, private el: ElementRef, @Optional() private translateService: TranslateService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         const enabled = this.configService.getConfig().i18nEnabled;
         if (enabled) {
             this.translateService.onLangChange.pipe(takeUntil(this.directiveDestroyed)).subscribe(() => {
@@ -46,7 +46,7 @@ export class JhiTranslateDirective implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    ngOnChanges() {
+    ngOnChanges(): void {
         const enabled = this.configService.getConfig().i18nEnabled;
 
         if (enabled) {
@@ -54,19 +54,19 @@ export class JhiTranslateDirective implements OnChanges, OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this.directiveDestroyed.next();
         this.directiveDestroyed.complete();
 
     }
 
-    private getTranslation() {
+    private getTranslation(): void {
         this.translateService
             .get(this.jhiTranslate, this.translateValues)
             .pipe(takeUntil(this.directiveDestroyed))
             .subscribe(
-                value => {
-                    this.el.nativeElement.innerHTML = value;
+                (value: string) => {
+                    (this.el.nativeElement as HTMLElement).innerHTML = value;
                 },
                 () => {
                     return `${this.configService.getConfig().noi18nMessage}[${this.jhiTranslate}]`;

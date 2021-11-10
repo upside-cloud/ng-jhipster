@@ -50,7 +50,7 @@ export class JhiSortByDirective implements AfterContentInit {
     }
 
     @HostListener('click')
-    onClick() {
+    onClick(): void {
         if (this.jhiSort.predicate && this.jhiSort.predicate !== '_score') {
             this.jhiSort.sort(this.jhiSortBy);
             this.updateIconDefinition(this.jhiSort.activeIconComponent, this.sortIcon);
@@ -59,7 +59,7 @@ export class JhiSortByDirective implements AfterContentInit {
         }
     }
 
-    private updateIconDefinition(iconComponent: FaIconComponent, icon: IconDefinition) {
+    private updateIconDefinition(iconComponent: FaIconComponent, icon: IconDefinition): void {
         if (iconComponent) {
             iconComponent.icon = icon.iconName;
             iconComponent.render();
