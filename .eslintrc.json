@@ -1,6 +1,6 @@
 {
     "plugins": ["@typescript-eslint/tslint"],
-    "extends": ["jhipster"],
+    "extends": ["@upside-cloud/eslint-config-jhipster"],
     "parserOptions": {
         "project": "./tsconfig.json"
     },
