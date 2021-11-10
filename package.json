@@ -1,10 +1,10 @@
 {
   "name": "@upside-cloud/ng-jhipster",
-  "version": "0.19.0",
-  "description": "A Jhipster util library for Angular",
+  "version": "0.19.4",
+  "description": "A Jhipster util library for Angular. Upgraded for Angular 12.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jhipster/ng-jhipster.git"
+    "url": "https://github.com/upside-cloud/ng-jhipster.git"
   },
   "keywords": [
     "jhipster",
@@ -14,7 +14,7 @@
   "author": "Deepu KS",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/jhipster/generator-jhipster/issues"
+    "url": "https://github.com/upside-cloud/generator-jhipster/issues"
   },
   "homepage": "https://www.jhipster.tech",
   "peerDependencies": {
