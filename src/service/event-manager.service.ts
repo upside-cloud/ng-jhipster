@@ -50,7 +50,7 @@ export class JhiEventManager {
      * Method to subscribe to an event with callback
      */
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    subscribe(eventName: string, callback: any): Subscription {
+    subscribe(eventName: string, callback: (value: any) => void): Subscription {
         const subscriber: Subscription = this.observable
             .pipe(
                 filter((event: JhiEventWithContent<any> | string) => {

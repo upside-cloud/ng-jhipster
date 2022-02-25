@@ -127,7 +127,7 @@ export class JhiAlertService {
     addAlert(alertOptions: JhiAlert, extAlerts: JhiAlert[]): JhiAlert {
         alertOptions.id = this.alertId++;
         if (this.i18nEnabled && alertOptions.msg) {
-            alertOptions.msg = this.translateService.instant(alertOptions.msg, alertOptions.params) as string || '';
+            alertOptions.msg = this.translateService.instant(alertOptions.msg, alertOptions.params as object) as string || '';
         }
         const alert = this.factory(alertOptions);
         if (alertOptions.timeout && alertOptions.timeout > 0) {

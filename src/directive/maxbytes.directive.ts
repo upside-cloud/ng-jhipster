@@ -32,7 +32,7 @@ export class JhiMaxbytesValidatorDirective {
     constructor() {}
 
     validate(c: FormControl): ValidationErrors | null {
-        return c.value && numberOfBytes(c.value) > this.jhiMaxbytes
+        return c.value && numberOfBytes(String(c.value)) > this.jhiMaxbytes
             ? {
                   maxbytes: {
                       valid: false

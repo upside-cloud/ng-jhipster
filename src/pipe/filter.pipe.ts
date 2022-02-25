@@ -41,7 +41,7 @@ export class JhiFilterPipe implements PipeTransform {
         }
         if (typeof currentFilter === 'object') {
             // filter by object ignores 'field' if specified
-            return input.filter(this.filterByObject(currentFilter));
+            return input.filter(this.filterByObject(currentFilter as object));
         }
 
         // 'symbol' && 'undefined'
@@ -82,11 +82,11 @@ export class JhiFilterPipe implements PipeTransform {
             // all fields defined in filter object must match
             for (const key of keys) {
                 if (typeof filter[key] === 'number') {
-                    isMatching = this.filterByNumber(filter[key])(value[key]);
+                    isMatching = this.filterByNumber(filter[key] as number)(value[key]);
                 } else if (typeof filter[key] === 'boolean') {
-                    isMatching = this.filterByBoolean(filter[key])(value[key]);
+                    isMatching = this.filterByBoolean(filter[key] as boolean)(value[key]);
                 } else if (typeof filter[key] === 'string') {
-                    isMatching = this.filterByString(filter[key])(value[key]);
+                    isMatching = this.filterByString(filter[key] as string)(value[key]);
                 } else {
                     isMatching = this.filterDefault(filter[key])(value[key]);
                 }

@@ -46,13 +46,13 @@ export class JhiBase64Service {
             enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
             enc4 = chr3 & 63;
 
-            if (isNaN(chr2)) {
+            if (isNaN(chr2 as number)) {
                 enc3 = enc4 = 64;
-            } else if (isNaN(chr3)) {
+            } else if (isNaN(chr3 as number)) {
                 enc4 = 64;
             }
 
-            output = output + this.keyStr.charAt(enc1) + this.keyStr.charAt(enc2) + this.keyStr.charAt(enc3) + this.keyStr.charAt(enc4);
+            output = output + this.keyStr.charAt(enc1 as number) + this.keyStr.charAt(enc2 as number) + this.keyStr.charAt(enc3 as number) + this.keyStr.charAt(enc4 as number);
             chr1 = chr2 = chr3 = '';
             enc1 = enc2 = enc3 = enc4 = '';
         }
@@ -84,13 +84,13 @@ export class JhiBase64Service {
             chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
             chr3 = ((enc3 & 3) << 6) | enc4;
 
-            output = output + String.fromCharCode(chr1);
+            output = output + String.fromCharCode(chr1 as number);
 
             if (enc3 !== 64) {
-                output = output + String.fromCharCode(chr2);
+                output = output + String.fromCharCode(chr2 as number);
             }
             if (enc4 !== 64) {
-                output = output + String.fromCharCode(chr3);
+                output = output + String.fromCharCode(chr3 as number);
             }
 
             chr1 = chr2 = chr3 = '';

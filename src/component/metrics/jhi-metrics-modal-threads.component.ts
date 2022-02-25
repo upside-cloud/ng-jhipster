@@ -52,12 +52,12 @@ import { ThreadData } from './thread-data.interface';
                     >&nbsp;{{ entry.value.threadName }}
                     (ID
                     {{ entry.value.threadId }})
-                    <a (click)="entry.show = !entry.show" href="javascript:void(0);">
-                        <span [hidden]="entry.show" jhiTranslate="metrics.jvm.threads.dump.show">Show StackTrace</span>
-                        <span [hidden]="!entry.show" jhiTranslate="metrics.jvm.threads.dump.hide">Hide StackTrace</span>
+                    <a (click)="stackTrace.hidden = !stackTrace.hidden" href="javascript:void(0);">
+                        <span [hidden]="stackTrace.hidden" jhiTranslate="metrics.jvm.threads.dump.show">Show StackTrace</span>
+                        <span [hidden]="!stackTrace.hidden" jhiTranslate="metrics.jvm.threads.dump.hide">Hide StackTrace</span>
                     </a>
                 </h6>
-                <div class="card" [hidden]="!entry.show">
+                <div #stackTrace class="card" [hidden]="true">
                     <div class="card-body">
                         <div *ngFor="let st of (entry.value.stackTrace | keys)" class="break">
                             <samp

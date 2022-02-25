@@ -32,7 +32,7 @@ export class JhiMinbytesValidatorDirective {
     constructor() {}
 
     validate(c: FormControl): ValidationErrors | null {
-        return c.value && numberOfBytes(c.value) < this.jhiMinbytes
+        return c.value && numberOfBytes(String(c.value)) < this.jhiMinbytes
             ? {
                   minbytes: {
                       valid: false

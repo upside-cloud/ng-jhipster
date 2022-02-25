@@ -28,6 +28,8 @@ export interface JhiFileLoadError {
     params?: any;
 }
 
+type MsNavigator = Navigator & { msSaveOrOpenBlob?(blob: Blob) };
+
 /**
  * An utility service for data.
  */
@@ -58,7 +60,8 @@ export class JhiDataUtils {
      * Method to open file
      */
     openFile(contentType: string, data: string): void {
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        const navigator: MsNavigator = window.navigator;
+        if (navigator && navigator.msSaveOrOpenBlob) {
             // To support IE and Edge
             const byteCharacters = atob(data);
             const byteNumbers = new Array(byteCharacters.length);
@@ -69,7 +72,7 @@ export class JhiDataUtils {
             const blob = new Blob([byteArray], {
                 type: contentType
             });
-            window.navigator.msSaveOrOpenBlob(blob);
+            navigator.msSaveOrOpenBlob(blob);
         } else {
             // Other browsers
             const fileURL = `data:${contentType};base64,${data}`;

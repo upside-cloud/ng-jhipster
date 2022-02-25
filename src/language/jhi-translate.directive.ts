@@ -62,7 +62,7 @@ export class JhiTranslateDirective implements OnChanges, OnInit, OnDestroy {
 
     private getTranslation(): void {
         this.translateService
-            .get(this.jhiTranslate, this.translateValues)
+            .get(this.jhiTranslate, this.translateValues as object)
             .pipe(takeUntil(this.directiveDestroyed))
             .subscribe(
                 (value: string) => {
