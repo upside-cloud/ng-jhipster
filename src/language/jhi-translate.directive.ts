@@ -33,7 +33,7 @@ export class JhiTranslateDirective implements OnChanges, OnInit, OnDestroy {
     @Input() jhiTranslate: string;
     @Input() translateValues: any;
 
-    private readonly directiveDestroyed = new Subject<never>();
+    private readonly directiveDestroyed = new Subject<void>();
 
     constructor(private configService: JhiConfigService, private el: ElementRef, @Optional() private translateService: TranslateService) {}
 
