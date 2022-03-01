@@ -28,7 +28,7 @@
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
-    "rxjs": "^6.6.7"
+    "rxjs": "^7.5.4"
   },
   "devDependencies": {
     "@angular/animations": "^13.2.4",
