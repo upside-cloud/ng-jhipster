@@ -1,6 +1,6 @@
 {
   "name": "@upside-cloud/ng-jhipster",
-  "version": "0.20.1",
+  "version": "0.20.2",
   "description": "A Jhipster util library for Angular. Upgraded for Angular 13.",
   "repository": {
     "type": "git",
