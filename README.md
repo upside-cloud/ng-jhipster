@@ -1,5 +1,5 @@
 
-ng-hipster for angular@13
+ng-hipster for angular 13 - 15
 
 ---
 
